@@ -1,0 +1,36 @@
+slug: android-strings-localized-translate
+name: Android Strings Localized Translate
+version: 0.1.0
+summary: Fills missing translations for nine Android locale files while preserving existing localized values.
+description: Imports the full Android string translation skill package, including validation and sync scripts, so maintainers can install and use it from this monorepo.
+authors:
+  - Skills Team
+tags:
+  - android
+  - localization
+  - translation
+  - xml
+platforms:
+  - codex
+  - generic
+install:
+  method: script
+  copy:
+    source: skills/android-strings-localized-translate
+entrypoint: SKILL.md
+compatibility:
+  minimum_host_version: "0.1"
+  notes: Requires Python 3 to run the bundled sync and validation scripts.
+status: active
+created_at: 2026-03-12
+updated_at: 2026-03-12
+depends_on: []
+provides:
+  - android-string-translation
+  - locale-validation
+examples:
+  - prompt: Fill missing translations in strings_localized.xml for all nine locales.
+    outcome: Reports missing keys, writes only missing translations, and preserves line layout.
+repository: https://example.com/skills-monorepo
+homepage: https://example.com/skills-monorepo/docs/android-strings-localized-translate
+assets: []

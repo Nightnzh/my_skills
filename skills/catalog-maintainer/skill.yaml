@@ -1,0 +1,35 @@
+slug: catalog-maintainer
+name: Catalog Maintainer
+version: 0.1.0
+summary: Helps maintainers keep this skills monorepo valid, documented, and versioned.
+description: Use this skill to review incoming skills, validate metadata, and keep generated documentation synchronized with the repository source of truth.
+authors:
+  - Skills Team
+tags:
+  - maintenance
+  - documentation
+  - validation
+platforms:
+  - codex
+  - generic
+install:
+  method: script
+  copy:
+    source: skills/catalog-maintainer
+entrypoint: SKILL.md
+compatibility:
+  minimum_host_version: "0.1"
+  notes: Works anywhere the monorepo tooling can copy a skill directory.
+status: active
+created_at: 2026-03-12
+updated_at: 2026-03-12
+depends_on: []
+provides:
+  - skill-review
+  - catalog-maintenance
+examples:
+  - prompt: Review a new skill before merging it.
+    outcome: Checks metadata, version, changelog, and generated docs expectations.
+repository: https://example.com/skills-monorepo
+homepage: https://example.com/skills-monorepo/docs/catalog-maintainer
+assets: []

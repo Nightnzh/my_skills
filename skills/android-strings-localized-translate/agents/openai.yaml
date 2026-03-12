@@ -1,0 +1,4 @@
+interface:
+  display_name: "Android Strings Localized Translate"
+  short_description: "Fill missing Android locale strings and align all file lines"
+  default_prompt: "Complete the 9 non-English translations for app/src/main/res/values/strings_localized.xml, preserve existing translated values, rewrite locale files to match the base file's line layout exactly, and validate that all 10 files have identical line counts."
