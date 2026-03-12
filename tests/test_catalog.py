@@ -59,9 +59,12 @@ examples:
             self.assertEqual(catalog["skills"][0]["version"], "1.2.0")
             self.assertIn("Demo Skill", outputs.docs_index)
             self.assertIn("## Installation", outputs.skill_docs["demo-skill"])
-            self.assertIn("latest version", outputs.readme)
+            self.assertIn("install https://github.com/Nightnzh/my_skills/tree/main/skills/demo-skill skill", outputs.readme)
+            self.assertNotIn("./tools/install_skill <slug>", outputs.readme)
             self.assertIn("README.zh-TW.md", outputs.readme)
             self.assertIn("繁體中文", outputs.readme_zh_tw)
+            self.assertIn("https://github.com/Nightnzh/my_skills/tree/main/skills/demo-skill", outputs.skill_docs["demo-skill"])
+            self.assertIn("請安裝這個 skill：", outputs.skill_docs["demo-skill"])
 
     def test_build_outputs_lists_multiple_skills_in_generated_files(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -121,7 +124,10 @@ updated_at: 2026-03-12
                 [skill["slug"] for skill in catalog["skills"]],
                 ["android-strings-localized-translate", "demo-skill"],
             )
-            self.assertIn("android-strings-localized-translate", outputs.readme)
+            self.assertIn(
+                "https://github.com/Nightnzh/my_skills/tree/main/skills/android-strings-localized-translate",
+                outputs.readme,
+            )
             self.assertIn("Android Strings Localized Translate", outputs.docs_index)
 
     def test_write_outputs_writes_traditional_chinese_readme(self) -> None:
@@ -170,6 +176,7 @@ updated_at: 2026-03-12
             readme_zh = (repo / "README.zh-TW.md").read_text(encoding="utf-8")
             self.assertIn("技能 Monorepo Catalog", readme_zh)
             self.assertIn("快速開始", readme_zh)
+            self.assertIn("請安裝這個 skill：", readme_zh)
 
 
 if __name__ == "__main__":

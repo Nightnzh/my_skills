@@ -12,9 +12,9 @@ Use this skill to review incoming skills, validate metadata, and keep generated 
 
 ## Installation
 
-- Preferred method: `script`
-- Installer: `./tools/install_skill catalog-maintainer`
-- Git path: `skills/catalog-maintainer`
+- Skill URL: `https://github.com/Nightnzh/my_skills/tree/main/skills/catalog-maintainer`
+- Prompt: `請安裝這個 skill：https://github.com/Nightnzh/my_skills/tree/main/skills/catalog-maintainer`
+- Prompt (EN): `install https://github.com/Nightnzh/my_skills/tree/main/skills/catalog-maintainer skill`
 
 ## Usage
 

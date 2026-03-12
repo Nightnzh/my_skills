@@ -1,35 +1,37 @@
 # Installation
 
-## Preferred: installer script
+## Recommended
 
-Use the local installer script from a clone of this repository:
+Use the skill's GitHub URL directly in your agent prompt.
 
-```bash
-./tools/install_skill <slug>
-./tools/install_skill <slug> --version 1.2.3
-./tools/install_skill <slug> --target codex
-./tools/install_skill --list
+Example:
+
+```text
+install https://github.com/Nightnzh/my_skills/tree/main/skills/android-strings-localized-translate skill
 ```
 
-Defaults:
+Traditional Chinese example:
 
-- `--target codex`
-- target root: `$CODEX_HOME/skills` when `CODEX_HOME` is set
-- fallback target root: `~/.codex/skills`
-
-Deprecated skills require an explicit opt-in:
-
-```bash
-./tools/install_skill <slug> --allow-deprecated
+```text
+請安裝這個 skill：
+https://github.com/Nightnzh/my_skills/tree/main/skills/android-strings-localized-translate
 ```
 
-## Supported: Git URL or clone workflow
+## Template
 
-You can also consume a skill directly from the repository:
+Replace `<slug>` with the skill folder name:
 
-1. Clone the repository.
-2. Navigate to `skills/<slug>/`.
-3. Point your host environment at that directory or copy it manually.
-4. Optionally pin to a specific commit or tag in your own automation.
+```text
+install https://github.com/Nightnzh/my_skills/tree/main/skills/<slug> skill
+```
 
-Use this path when you want full control over updates or want to review the skill contents before installation.
+Or:
+
+```text
+請安裝這個 skill：
+https://github.com/Nightnzh/my_skills/tree/main/skills/<slug>
+```
+
+## Advanced / Maintainer Notes
+
+This repository still includes local tooling such as `./tools/install_skill`, but it is a maintainer-oriented path rather than the primary end-user instruction.

@@ -6,7 +6,8 @@ A monorepo for versioned skills, installation workflows, and generated documenta
 
 ## Quick Start
 
-- Install the latest version of a skill with `./tools/install_skill <slug>`.
+- Install by URL: `install https://github.com/Nightnzh/my_skills/tree/main/skills/android-strings-localized-translate skill`.
+- Example: `install https://github.com/Nightnzh/my_skills/tree/main/skills/android-strings-localized-translate skill`.
 - Browse generated docs in `docs/index.md`.
 - Validate metadata and generated outputs with `./tools/validate_skills --check-generated`.
 

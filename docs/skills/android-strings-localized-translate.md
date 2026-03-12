@@ -12,9 +12,9 @@ Imports the full Android string translation skill package, including validation 
 
 ## Installation
 
-- Preferred method: `script`
-- Installer: `./tools/install_skill android-strings-localized-translate`
-- Git path: `skills/android-strings-localized-translate`
+- Skill URL: `https://github.com/Nightnzh/my_skills/tree/main/skills/android-strings-localized-translate`
+- Prompt: `請安裝這個 skill：https://github.com/Nightnzh/my_skills/tree/main/skills/android-strings-localized-translate`
+- Prompt (EN): `install https://github.com/Nightnzh/my_skills/tree/main/skills/android-strings-localized-translate skill`
 
 ## Usage
 

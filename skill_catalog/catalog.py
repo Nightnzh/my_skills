@@ -7,6 +7,8 @@ from pathlib import Path
 from skill_catalog.models import SkillMetadata
 from skill_catalog.repository import load_repository_skills
 
+REPO_SKILL_BASE_URL = "https://github.com/Nightnzh/my_skills/tree/main/skills"
+
 
 @dataclass(slots=True)
 class BuildOutputs:
@@ -69,7 +71,7 @@ def _build_skill_doc(skill: SkillMetadata) -> str:
         for example in skill.examples
     ) or "- None documented yet."
     depends = ", ".join(skill.depends_on) or "None"
-    install_method = skill.install.get("method", "unknown")
+    skill_url = _skill_url(skill.slug)
     return "\n".join(
         [
             f"# {skill.name}",
@@ -86,9 +88,9 @@ def _build_skill_doc(skill: SkillMetadata) -> str:
             "",
             "## Installation",
             "",
-            f"- Preferred method: `{install_method}`",
-            f"- Installer: `./tools/install_skill {skill.slug}`",
-            f"- Git path: `skills/{skill.slug}`",
+            f"- Skill URL: `{skill_url}`",
+            f"- Prompt: `請安裝這個 skill：{skill_url}`",
+            f"- Prompt (EN): `install {skill_url} skill`",
             "",
             "## Usage",
             "",
@@ -113,6 +115,7 @@ def _build_skill_doc(skill: SkillMetadata) -> str:
 def _build_readme(skills: list[SkillMetadata]) -> str:
     latest = max((skill.updated_at for skill in skills), default="n/a")
     featured = "\n".join(f"- `{skill.slug}`: {skill.summary}" for skill in skills[:5]) or "- No skills yet."
+    example_url = _skill_url(skills[0].slug) if skills else f"{REPO_SKILL_BASE_URL}/<slug>"
     return "\n".join(
         [
             "# Skills Monorepo Catalog",
@@ -123,7 +126,8 @@ def _build_readme(skills: list[SkillMetadata]) -> str:
             "",
             "## Quick Start",
             "",
-            "- Install the latest version of a skill with `./tools/install_skill <slug>`.",
+            f"- Install by URL: `install {example_url} skill`.",
+            f"- Example: `install {_skill_url('android-strings-localized-translate')} skill`.",
             "- Browse generated docs in `docs/index.md`.",
             "- Validate metadata and generated outputs with `./tools/validate_skills --check-generated`.",
             "",
@@ -150,6 +154,7 @@ def _build_readme(skills: list[SkillMetadata]) -> str:
 def _build_readme_zh_tw(skills: list[SkillMetadata]) -> str:
     latest = max((skill.updated_at for skill in skills), default="n/a")
     featured = "\n".join(f"- `{skill.slug}`: {skill.summary}" for skill in skills[:5]) or "- 目前沒有技能。"
+    example_url = _skill_url(skills[0].slug) if skills else f"{REPO_SKILL_BASE_URL}/<slug>"
     return "\n".join(
         [
             "# 技能 Monorepo Catalog",
@@ -162,7 +167,8 @@ def _build_readme_zh_tw(skills: list[SkillMetadata]) -> str:
             "",
             "## 快速開始",
             "",
-            "- 使用 `./tools/install_skill <slug>` 安裝最新版本 skill。",
+            f"- 請安裝這個 skill：{example_url}",
+            f"- 範例：`install {_skill_url('android-strings-localized-translate')} skill`",
             "- 在 `docs/index.md` 瀏覽自動產生的文件索引。",
             "- 使用 `./tools/validate_skills --check-generated` 驗證 metadata 與生成檔案是否同步。",
             "",
@@ -184,3 +190,7 @@ def _build_readme_zh_tw(skills: list[SkillMetadata]) -> str:
             "",
         ]
     )
+
+
+def _skill_url(slug: str) -> str:
+    return f"{REPO_SKILL_BASE_URL}/{slug}"

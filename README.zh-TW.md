@@ -8,7 +8,8 @@
 
 ## 快速開始
 
-- 使用 `./tools/install_skill <slug>` 安裝最新版本 skill。
+- 請安裝這個 skill：https://github.com/Nightnzh/my_skills/tree/main/skills/android-strings-localized-translate
+- 範例：`install https://github.com/Nightnzh/my_skills/tree/main/skills/android-strings-localized-translate skill`
 - 在 `docs/index.md` 瀏覽自動產生的文件索引。
 - 使用 `./tools/validate_skills --check-generated` 驗證 metadata 與生成檔案是否同步。
 
