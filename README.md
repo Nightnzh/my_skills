@@ -15,10 +15,11 @@ A monorepo for versioned skills, installation workflows, and generated documenta
 
 - `android-strings-localized-translate`: Fills missing translations for nine Android locale files while preserving existing localized values.
 - `catalog-maintainer`: Helps maintainers keep this skills monorepo valid, documented, and versioned.
+- `ordering-cashier-tw`: Documents a safe natural-language ordering workflow for the Taiwan Cashier site.
 
 ## Repository Facts
 
-- Skills tracked: 2
+- Skills tracked: 3
 - latest version metadata updated: 2026-03-12
 
 ## Docs

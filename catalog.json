@@ -97,6 +97,58 @@
       "homepage": "https://example.com/skills-monorepo/docs/catalog-maintainer",
       "deprecation": null,
       "assets": []
+    },
+    {
+      "slug": "ordering-cashier-tw",
+      "name": "Ordering Cashier TW",
+      "version": "0.1.0",
+      "summary": "Documents a safe natural-language ordering workflow for the Taiwan Cashier site.",
+      "description": "Adds a full-flow ordering skill package that requires live menu resolution, minimal clarification, and strict stop conditions before final submission.",
+      "authors": [
+        "Skills Team"
+      ],
+      "tags": [
+        "ordering",
+        "cashier",
+        "browser",
+        "workflow"
+      ],
+      "platforms": [
+        "codex"
+      ],
+      "install": {
+        "method": "script",
+        "copy": {
+          "source": "skills/ordering-cashier-tw"
+        }
+      },
+      "entrypoint": "SKILL.md",
+      "compatibility": {
+        "minimum_host_version": "0.1",
+        "notes": "Requires a browser-capable host and should stop when manual verification is required."
+      },
+      "status": "active",
+      "created_at": "2026-03-12",
+      "updated_at": "2026-03-12",
+      "depends_on": [],
+      "provides": [
+        "cashier-ordering",
+        "natural-language-order-resolution"
+      ],
+      "examples": [
+        {
+          "prompt": "幫我點大杯紅茶拿鐵無糖少冰 2 杯",
+          "outcome": "Resolves the live menu choices and submits the order when no clarification is needed."
+        },
+        {
+          "prompt": "幫我點兩杯珍奶，一杯半糖少冰，一杯無糖去冰",
+          "outcome": "Parses multiple items, resolves each against the live menu, and stops if any required option is ambiguous."
+        }
+      ],
+      "repository": "https://example.com/skills-monorepo",
+      "homepage": "https://example.com/skills-monorepo/docs/ordering-cashier-tw",
+      "deprecation": null,
+      "assets": []
     }
   ]
 }
