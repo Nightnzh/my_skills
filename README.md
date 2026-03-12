@@ -1,5 +1,7 @@
 # Skills Monorepo Catalog
 
+[繁體中文](README.zh-TW.md)
+
 A monorepo for versioned skills, installation workflows, and generated documentation.
 
 ## Quick Start

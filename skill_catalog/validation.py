@@ -31,6 +31,7 @@ def validate_generated_outputs(repo: Path) -> ValidationReport:
     outputs = build_outputs(repo)
     expected_files = {
         repo / "README.md": outputs.readme,
+        repo / "README.zh-TW.md": outputs.readme_zh_tw,
         repo / "catalog.json": outputs.catalog_json,
         repo / "docs" / "index.md": outputs.docs_index,
     }

@@ -60,6 +60,8 @@ examples:
             self.assertIn("Demo Skill", outputs.docs_index)
             self.assertIn("## Installation", outputs.skill_docs["demo-skill"])
             self.assertIn("latest version", outputs.readme)
+            self.assertIn("README.zh-TW.md", outputs.readme)
+            self.assertIn("繁體中文", outputs.readme_zh_tw)
 
     def test_build_outputs_lists_multiple_skills_in_generated_files(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -121,6 +123,53 @@ updated_at: 2026-03-12
             )
             self.assertIn("android-strings-localized-translate", outputs.readme)
             self.assertIn("Android Strings Localized Translate", outputs.docs_index)
+
+    def test_write_outputs_writes_traditional_chinese_readme(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = Path(tmp)
+            skill_dir = repo / "skills" / "demo-skill"
+            skill_dir.mkdir(parents=True)
+            (skill_dir / "SKILL.md").write_text("# Demo Skill\n", encoding="utf-8")
+            (skill_dir / "CHANGELOG.md").write_text(
+                "# Changelog\n\n## 0.1.0\n\n- Initial release.\n",
+                encoding="utf-8",
+            )
+            (skill_dir / "skill.yaml").write_text(
+                """
+slug: demo-skill
+name: Demo Skill
+version: 0.1.0
+summary: Demonstrates the generated skill catalog.
+description: A sample skill used to validate the catalog and docs pipeline.
+authors:
+  - Example Team
+tags:
+  - demo
+platforms:
+  - codex
+install:
+  method: script
+  copy:
+    source: skills/demo-skill
+entrypoint: SKILL.md
+compatibility:
+  notes: Works with the local Codex skill loader.
+status: active
+created_at: 2026-03-12
+updated_at: 2026-03-12
+""".strip()
+                + "\n",
+                encoding="utf-8",
+            )
+
+            from skill_catalog.catalog import write_outputs
+
+            outputs = build_outputs(repo)
+            write_outputs(repo, outputs)
+
+            readme_zh = (repo / "README.zh-TW.md").read_text(encoding="utf-8")
+            self.assertIn("技能 Monorepo Catalog", readme_zh)
+            self.assertIn("快速開始", readme_zh)
 
 
 if __name__ == "__main__":
