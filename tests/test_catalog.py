@@ -193,14 +193,15 @@ updated_at: 2026-03-12
 slug: ordering-cashier-tw
 name: Ordering Cashier TW
 version: 0.1.0
-summary: Handles natural-language ordering for the Taiwan Cashier site.
-description: Documents a full-flow ordering skill for the Taiwan Cashier site.
+summary: Handles HTTP/API-first natural-language ordering for the Taiwan Cashier site.
+description: Documents a protocol-discovery ordering skill for the Taiwan Cashier site.
 authors:
   - Skills Team
 tags:
   - ordering
   - cashier
-  - browser
+  - api
+  - protocol
 platforms:
   - codex
 install:
@@ -209,13 +210,13 @@ install:
     source: skills/ordering-cashier-tw
 entrypoint: SKILL.md
 compatibility:
-  notes: Requires a browser-capable host for execution.
+  notes: Requires a host that can inspect and send HTTP requests without relying on an interactive browser.
 status: active
 created_at: 2026-03-12
 updated_at: 2026-03-12
 examples:
   - prompt: 幫我點大杯紅茶拿鐵無糖少冰 2 杯
-    outcome: Resolves the menu options and submits the order when unambiguous.
+    outcome: Resolves the live menu through direct requests and submits the order when no clarification is needed.
 """.strip()
                 + "\n",
                 encoding="utf-8",
