@@ -5,7 +5,7 @@ Adds a full-flow ordering skill package that derives live request protocols, res
 ## Metadata
 
 - Slug: `ordering-cashier-tw`
-- Version: `0.1.1`
+- Version: `0.1.2`
 - Status: `active`
 - Platforms: codex
 - Entry point: `SKILL.md`

@@ -101,7 +101,7 @@
     {
       "slug": "ordering-cashier-tw",
       "name": "Ordering Cashier TW",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "summary": "Documents an HTTP/API-first natural-language ordering workflow for the Taiwan Cashier site.",
       "description": "Adds a full-flow ordering skill package that derives live request protocols, resolves menu options, and submits orders through direct requests with strict stop conditions.",
       "authors": [
