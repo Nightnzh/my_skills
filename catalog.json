@@ -51,6 +51,58 @@
       "assets": []
     },
     {
+      "slug": "cashier-order-cli",
+      "name": "Cashier Order CLI",
+      "version": "0.1.0",
+      "summary": "Provides a pure CLI Cashier ordering workflow through direct HTTP requests.",
+      "description": "Installs a runnable Cashier ordering CLI skill package with protocol discovery, order resolution, and direct request submission.",
+      "authors": [
+        "Skills Team"
+      ],
+      "tags": [
+        "ordering",
+        "cashier",
+        "cli",
+        "api"
+      ],
+      "platforms": [
+        "codex"
+      ],
+      "install": {
+        "method": "script",
+        "copy": {
+          "source": "skills/cashier-order-cli"
+        }
+      },
+      "entrypoint": "SKILL.md",
+      "compatibility": {
+        "minimum_host_version": "0.1",
+        "notes": "Requires Python 3 and a host that can send direct HTTP requests to Cashier ordering endpoints."
+      },
+      "status": "active",
+      "created_at": "2026-03-13",
+      "updated_at": "2026-03-13",
+      "depends_on": [],
+      "provides": [
+        "cashier-order-cli",
+        "cashier-protocol-ordering"
+      ],
+      "examples": [
+        {
+          "prompt": "cashier-order \"幫我點最接近 50 元的炸蛋加白飯\"",
+          "outcome": "Resolves a unique combination and submits it without asking follow-up questions."
+        },
+        {
+          "prompt": "cashier-order --welcome-url \"<url>\" --target-total 10 --dry-run",
+          "outcome": "Finds the closest available combination and prints the result without submitting an order."
+        }
+      ],
+      "repository": "https://example.com/skills-monorepo",
+      "homepage": "https://example.com/skills-monorepo/docs/cashier-order-cli",
+      "deprecation": null,
+      "assets": []
+    },
+    {
       "slug": "catalog-maintainer",
       "name": "Catalog Maintainer",
       "version": "0.1.0",

@@ -14,12 +14,13 @@ A monorepo for versioned skills, installation workflows, and generated documenta
 ## Featured Skills
 
 - `android-strings-localized-translate`: Fills missing translations for nine Android locale files while preserving existing localized values.
+- `cashier-order-cli`: Provides a pure CLI Cashier ordering workflow through direct HTTP requests.
 - `catalog-maintainer`: Helps maintainers keep this skills monorepo valid, documented, and versioned.
 - `ordering-cashier-tw`: Documents an HTTP/API-first natural-language ordering workflow for the Taiwan Cashier site.
 
 ## Repository Facts
 
-- Skills tracked: 3
+- Skills tracked: 4
 - latest version metadata updated: 2026-03-13
 
 ## Docs
