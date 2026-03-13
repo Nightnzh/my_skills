@@ -1,15 +1,15 @@
 slug: ordering-cashier-tw
 name: Ordering Cashier TW
-version: 0.1.0
-summary: Documents a safe natural-language ordering workflow for the Taiwan Cashier site.
-description: Adds a full-flow ordering skill package that requires live menu resolution, minimal clarification, and strict stop conditions before final submission.
+version: 0.1.1
+summary: Documents an HTTP/API-first natural-language ordering workflow for the Taiwan Cashier site.
+description: Adds a full-flow ordering skill package that derives live request protocols, resolves menu options, and submits orders through direct requests with strict stop conditions.
 authors:
   - Skills Team
 tags:
   - ordering
   - cashier
-  - browser
-  - workflow
+  - api
+  - protocol
 platforms:
   - codex
 install:
@@ -19,19 +19,19 @@ install:
 entrypoint: SKILL.md
 compatibility:
   minimum_host_version: "0.1"
-  notes: Requires a browser-capable host and should stop when manual verification is required.
+  notes: Requires a host that can inspect bootstrap resources and send direct HTTP requests without relying on an interactive browser session.
 status: active
 created_at: 2026-03-12
-updated_at: 2026-03-12
+updated_at: 2026-03-13
 depends_on: []
 provides:
   - cashier-ordering
-  - natural-language-order-resolution
+  - protocol-driven-order-resolution
 examples:
   - prompt: 幫我點大杯紅茶拿鐵無糖少冰 2 杯
-    outcome: Resolves the live menu choices and submits the order when no clarification is needed.
+    outcome: Resolves the live menu through direct requests and submits the order when no clarification is needed.
   - prompt: 幫我點兩杯珍奶，一杯半糖少冰，一杯無糖去冰
-    outcome: Parses multiple items, resolves each against the live menu, and stops if any required option is ambiguous.
+    outcome: Parses multiple items, resolves each against the live menu, and stops if any required option or protocol step is ambiguous.
 repository: https://example.com/skills-monorepo
 homepage: https://example.com/skills-monorepo/docs/ordering-cashier-tw
 assets: []
