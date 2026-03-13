@@ -205,6 +205,60 @@ updated_at: 2026-03-12
             self.assertTrue((target / "android-strings-localized-translate" / "scripts" / "validate_strings_localized.py").exists())
             self.assertTrue((target / "android-strings-localized-translate" / "agents" / "openai.yaml").exists())
 
+    def test_install_skill_copies_ordering_cashier_skill_package(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = Path(tmp) / "repo"
+            repo.mkdir()
+            skill_dir = repo / "skills" / "ordering-cashier-tw"
+            skill_dir.mkdir(parents=True)
+            (skill_dir / "SKILL.md").write_text("# Ordering Cashier TW\n", encoding="utf-8")
+            (skill_dir / "CHANGELOG.md").write_text(
+                "# Changelog\n\n## 0.1.0\n\n- Initial release.\n",
+                encoding="utf-8",
+            )
+            (skill_dir / "skill.yaml").write_text(
+                """
+slug: ordering-cashier-tw
+name: Ordering Cashier TW
+version: 0.1.0
+summary: Handles HTTP/API-first natural-language ordering for the Taiwan Cashier site.
+description: Adds a documented ordering workflow skill package based on protocol discovery and direct requests.
+authors:
+  - Skills Team
+tags:
+  - ordering
+  - cashier
+  - api
+platforms:
+  - codex
+install:
+  method: script
+  copy:
+    source: skills/ordering-cashier-tw
+entrypoint: SKILL.md
+compatibility:
+  notes: Requires a host that can inspect and send HTTP requests without relying on an interactive browser.
+status: active
+created_at: 2026-03-12
+updated_at: 2026-03-12
+""".strip()
+                + "\n",
+                encoding="utf-8",
+            )
+            target = Path(tmp) / "target"
+
+            result = install_skill(
+                repo=repo,
+                slug="ordering-cashier-tw",
+                target_host="codex",
+                target_root=target,
+            )
+
+            self.assertEqual(result.installed_version, "0.1.0")
+            self.assertTrue((target / "ordering-cashier-tw" / "SKILL.md").exists())
+            self.assertTrue((target / "ordering-cashier-tw" / "skill.yaml").exists())
+            self.assertTrue((target / "ordering-cashier-tw" / "CHANGELOG.md").exists())
+
 
 if __name__ == "__main__":
     unittest.main()

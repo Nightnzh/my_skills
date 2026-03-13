@@ -178,6 +178,56 @@ updated_at: 2026-03-12
             self.assertIn("快速開始", readme_zh)
             self.assertIn("請安裝這個 skill：", readme_zh)
 
+    def test_build_outputs_includes_ordering_cashier_skill_in_generated_docs(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = Path(tmp)
+            skill_dir = repo / "skills" / "ordering-cashier-tw"
+            skill_dir.mkdir(parents=True)
+            (skill_dir / "SKILL.md").write_text("# Ordering Cashier TW\n", encoding="utf-8")
+            (skill_dir / "CHANGELOG.md").write_text(
+                "# Changelog\n\n## 0.1.0\n\n- Initial release.\n",
+                encoding="utf-8",
+            )
+            (skill_dir / "skill.yaml").write_text(
+                """
+slug: ordering-cashier-tw
+name: Ordering Cashier TW
+version: 0.1.0
+summary: Handles HTTP/API-first natural-language ordering for the Taiwan Cashier site.
+description: Documents a protocol-discovery ordering skill for the Taiwan Cashier site.
+authors:
+  - Skills Team
+tags:
+  - ordering
+  - cashier
+  - api
+  - protocol
+platforms:
+  - codex
+install:
+  method: script
+  copy:
+    source: skills/ordering-cashier-tw
+entrypoint: SKILL.md
+compatibility:
+  notes: Requires a host that can inspect and send HTTP requests without relying on an interactive browser.
+status: active
+created_at: 2026-03-12
+updated_at: 2026-03-12
+examples:
+  - prompt: 幫我點大杯紅茶拿鐵無糖少冰 2 杯
+    outcome: Resolves the live menu through direct requests and submits the order when no clarification is needed.
+""".strip()
+                + "\n",
+                encoding="utf-8",
+            )
+
+            outputs = build_outputs(repo)
+
+            self.assertIn("Ordering Cashier TW", outputs.docs_index)
+            self.assertIn("ordering-cashier-tw", outputs.catalog_json)
+            self.assertIn("幫我點大杯紅茶拿鐵無糖少冰 2 杯", outputs.skill_docs["ordering-cashier-tw"])
+
 
 if __name__ == "__main__":
     unittest.main()
