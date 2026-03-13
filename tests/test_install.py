@@ -259,6 +259,68 @@ updated_at: 2026-03-12
             self.assertTrue((target / "ordering-cashier-tw" / "skill.yaml").exists())
             self.assertTrue((target / "ordering-cashier-tw" / "CHANGELOG.md").exists())
 
+    def test_install_skill_copies_cashier_order_cli_skill_package(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = Path(tmp) / "repo"
+            repo.mkdir()
+            skill_dir = repo / "skills" / "cashier-order-cli"
+            (skill_dir / "scripts").mkdir(parents=True)
+            (skill_dir / "tests").mkdir(parents=True)
+            (skill_dir / "SKILL.md").write_text("# Cashier Order CLI\n", encoding="utf-8")
+            (skill_dir / "CHANGELOG.md").write_text(
+                "# Changelog\n\n## 0.1.0\n\n- Initial release.\n",
+                encoding="utf-8",
+            )
+            (skill_dir / "scripts" / "cashier_order.py").write_text("print('cli')\n", encoding="utf-8")
+            (skill_dir / "scripts" / "bootstrap.py").write_text("BOOTSTRAP = True\n", encoding="utf-8")
+            (skill_dir / "tests" / "test_cli.py").write_text("import unittest\n", encoding="utf-8")
+            (skill_dir / "skill.yaml").write_text(
+                """
+slug: cashier-order-cli
+name: Cashier Order CLI
+version: 0.1.0
+summary: Provides a pure CLI Cashier ordering workflow through direct HTTP requests.
+description: Installs a runnable Cashier ordering CLI skill package with bundled scripts and tests.
+authors:
+  - Skills Team
+tags:
+  - ordering
+  - cashier
+  - cli
+  - api
+platforms:
+  - codex
+install:
+  method: script
+  copy:
+    source: skills/cashier-order-cli
+entrypoint: SKILL.md
+compatibility:
+  notes: Requires Python 3 and direct HTTP access to Cashier ordering endpoints.
+status: active
+created_at: 2026-03-13
+updated_at: 2026-03-13
+""".strip()
+                + "\n",
+                encoding="utf-8",
+            )
+            target = Path(tmp) / "target"
+
+            result = install_skill(
+                repo=repo,
+                slug="cashier-order-cli",
+                target_host="codex",
+                target_root=target,
+            )
+
+            self.assertEqual(result.installed_version, "0.1.0")
+            self.assertTrue((target / "cashier-order-cli" / "SKILL.md").exists())
+            self.assertTrue((target / "cashier-order-cli" / "skill.yaml").exists())
+            self.assertTrue((target / "cashier-order-cli" / "CHANGELOG.md").exists())
+            self.assertTrue((target / "cashier-order-cli" / "scripts" / "cashier_order.py").exists())
+            self.assertTrue((target / "cashier-order-cli" / "scripts" / "bootstrap.py").exists())
+            self.assertTrue((target / "cashier-order-cli" / "tests" / "test_cli.py").exists())
+
 
 if __name__ == "__main__":
     unittest.main()
