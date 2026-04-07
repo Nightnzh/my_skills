@@ -103,6 +103,61 @@
       "assets": []
     },
     {
+      "slug": "glab-private-gitlab",
+      "name": "Glab Private GitLab",
+      "version": "0.1.0",
+      "summary": "Connects and operates any self-hosted or private GitLab instance using the glab CLI.",
+      "description": "Covers authentication with PAT or env vars, SSH key setup, MR review with comments, inline code review via REST API, and pipeline/CI operations for private GitLab instances.",
+      "authors": [
+        "Skills Team"
+      ],
+      "tags": [
+        "gitlab",
+        "glab",
+        "cli",
+        "git",
+        "devops"
+      ],
+      "platforms": [
+        "codex",
+        "generic"
+      ],
+      "install": {
+        "method": "script",
+        "copy": {
+          "source": "skills/glab-private-gitlab"
+        }
+      },
+      "entrypoint": "SKILL.md",
+      "compatibility": {
+        "minimum_host_version": "0.1",
+        "notes": "Requires glab CLI installed and network access to the target GitLab instance."
+      },
+      "status": "active",
+      "created_at": "2026-04-07",
+      "updated_at": "2026-04-07",
+      "depends_on": [],
+      "provides": [
+        "glab-private-gitlab",
+        "gitlab-mr-review",
+        "gitlab-inline-comment"
+      ],
+      "examples": [
+        {
+          "prompt": "Connect to a private GitLab at gitlab.example.com using a PAT",
+          "outcome": "Authenticates glab CLI and confirms status with the self-hosted instance."
+        },
+        {
+          "prompt": "Leave an inline comment on line 42 of a file in MR #15",
+          "outcome": "Posts a positioned inline comment via the GitLab Discussions REST API."
+        }
+      ],
+      "repository": "https://example.com/skills-monorepo",
+      "homepage": "https://example.com/skills-monorepo/docs/glab-private-gitlab",
+      "deprecation": null,
+      "assets": []
+    },
+    {
       "slug": "catalog-maintainer",
       "name": "Catalog Maintainer",
       "version": "0.1.0",
